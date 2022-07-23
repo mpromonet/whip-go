@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 	"crypto/tls"
-	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -92,7 +92,7 @@ func (whip *WHIPClient) Publish(stream mediadevices.MediaStream, mediaEngine web
 	}
 
 	defer resp.Body.Close()
-	body, err := io.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body)
 
 	resourceUrl, err := url.Parse(resp.Header.Get("Location"))
 	if err != nil {
